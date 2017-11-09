@@ -1,0 +1,40 @@
+<div>
+    <div *ngFor="let user of DcUsers">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ user.userId}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{user.userName}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <button class="mat-icon-button mat-primary" mat-icon-button>
+                 <mat-icon>call</mat-icon> 
+              </button>
+        <button class="mat-icon-button mat-primary" mat-icon-button>
+                     <mat-icon>video_call</mat-icon> 
+                  </button>
+        <button class="mat-icon-button mat-primary" mat-icon-button (click)="Message($event,user.userId)">
+                         <mat-icon>message</mat-icon> 
+                      </button>
+        <!-- <button class="mat-icon-button mat-primary" mat-icon-button>
+               <mat-icon>message</mat-icon> 
+            </button> -->
+            <div class="row" >
+              <ul class="col-md-3" *ngFor="let group of user.groups">
+                <li  >
+                  <div>
+                  <h5> {{group.groupName}}</h5>
+                  </div>
+                </li>
+              </ul>
+            </div>
+      </mat-expansion-panel>
+    </div>
+    <br/>
+    <div>
+      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="pageEvent($event)">
+      </mat-paginator>
+    </div>
+  
